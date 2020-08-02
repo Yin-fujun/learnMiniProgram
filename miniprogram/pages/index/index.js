@@ -1,42 +1,65 @@
 //index.js
 const app = getApp()
 
+//注册一个页面
 Page({
+  //--------------------2.初始化数据--------------------
   data: {
     avatarUrl: './user-unlogin.png',
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    list: []
   },
 
+  //---------------1.监听页面生命周期函数----------
+ //页面被加载出来
   onLoad: function() {
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
-
-    // 获取用户信息
-    wx.getSetting({
+    console.log('onload');
+    wx.request({
+      url: 'http://123.207.32.32:8000/recommend',
       success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
-            }
-          })
-        }
+        console.log('数据请求返回===', res);
       }
     })
   },
+  //页面显示出来
+  onShow: function(options) {
+    console.log(options)
+  },
+  //页面初次渲染完成
+  onReady() {
+
+  },
+  onHide() {
+
+  },
+
+  onUnload() {
+
+  },
+
+  //-----------3.监听wxml中相关的一些事件-------------
+
+
+
+  //-----------4，监听其他事件---------
+  //监听页面滚动
+  onPageScroll(obj) {
+    console.log(obj);
+  },
+  //监听页面滚动到底部
+  onReachBottom() {
+    console.log('页面滚动到底部');
+  },
+  //监听页面下拉刷新
+  onPullDownRefresh() {
+    console.log('下拉刷新');
+  },
 
   onGetUserInfo: function(e) {
+    console.log(e);
     if (!this.data.logged && e.detail.userInfo) {
       this.setData({
         logged: true,
@@ -116,5 +139,13 @@ Page({
       }
     })
   },
+
+  //点击获取用户信息
+  bindGetUserInfo: function(event) {
+    console.log(event);
+  },
+  globalData: {
+    userInfo: {}
+  }
 
 })

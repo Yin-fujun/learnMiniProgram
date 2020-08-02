@@ -11,15 +11,34 @@
     "pages/openapi/serverapi/serverapi",
     "pages/openapi/callback/callback",
     "pages/openapi/cloudid/cloudid",
+    "pages/login/login",
     "pages/im/im",
     "pages/im/room/room"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#ff5777",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "小程序开发",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "selectedColor": "#ff5777",
+    "list": [
+      {
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "images/home_active.png",
+      "selectedIconPath": "images/home.png"
+    },
+    {
+      "pagePath": "pages/userConsole/userConsole",
+      "text": "用户信息",
+      "iconPath": "images/category_active.png",
+      "selectedIconPath": "images/category.png"
+    }
+  ]
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"
